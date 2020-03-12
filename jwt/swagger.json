@@ -1,0 +1,272 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": " Application API",
+      "description": "REST API's of CRUD operations & using microservuces architecture for uers management with user roles."
+     
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/signup": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "/": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Get all users in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          }
+        }
+      }
+    },
+    
+    
+    "/signin": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "user signin in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that  want to signin",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+    },
+    "/update/{id}": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "update  user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to update",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            },
+            {
+                "type": "apiKey",
+                "in": "header",
+                "name": "x-access-token"
+            },
+            {  
+               "name":"id",
+                "type": "integer",
+                "in": "path"
+               
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": " user is updated",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+    },
+    
+    "/getusers": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "description": " user ",
+          "parameters": [
+            
+            {
+                "type": "apiKey",
+                "in": "header",
+                "name": "x-access-token"
+            }
+            
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": " user access ",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+    },
+    "/sendmail": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "description": " user ",
+          "parameters": [
+            
+            {
+                "type": "apiKey",
+                "in": "header",
+                "name": "x-access-token"
+            }
+            
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": " user access ",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+    },
+"/delete/{id}": {
+    "post": {
+        
+    "summary": "Delete user with given ID",
+    "tags": [
+      "Users"
+    ],
+    
+    "parameters": [
+      
+      {
+          "type": "apiKey",
+          "in": "header",
+          "name": "x-access-token"
+      },
+      {
+        "name":"id",
+        "type": "integer",
+        "in": "path"
+      }
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "responses": {
+      "200": {
+        "description": "User is deleted",
+        "schema": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    }
+  }
+}
+
+    },
+ 
+
+    "definitions": {
+      "User": {
+        "required": [
+          "email"
+          
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "username": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "roles": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      }
+    }
+  }
